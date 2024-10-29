@@ -1,0 +1,121 @@
+{
+  "name": "OpenAI Text-to-Audio Agent",
+  "version": "1.0.0",
+  "description": "Convert text to audio using OpenAI's API with customizable voices, speeds, and formats",
+  "author": "Robert Sigler",
+  "repository": "https://github.com/rmrfslashbin/openai-text-to-audio",
+  "hubId": "openai-text-to-audio",
+  "created": "2024-10-29T01:11:17Z",
+  "active": true,
+  "schema": "skill-1.0.0",
+  "setup_args": {
+    "OPENAI_API_KEY": {
+      "type": "string",
+      "required": true,
+      "input": {
+        "type": "text",
+        "placeholder": "sk-...",
+        "hint": "Your OpenAI API key"
+      }
+    },
+    "OPENAI_TTS_MODEL": {
+      "type": "string",
+      "required": true,
+      "input": {
+        "type": "select",
+        "options": [
+          "tts-1",
+          "tts-1-hd"
+        ],
+        "default": "tts-1",
+        "hint": "OpenAI TTS model to use"
+      }
+    },
+    "OPENAI_TTS_VOICE": {
+      "type": "string",
+      "required": true,
+      "input": {
+        "type": "select",
+        "options": [
+          "alloy",
+          "echo",
+          "fable",
+          "onyx",
+          "nova",
+          "shimmer"
+        ],
+        "default": "alloy",
+        "hint": "Voice to use for text-to-speech conversion"
+      }
+    },
+    "OUTPUT_DIRECTORY": {
+      "type": "string",
+      "required": true,
+      "input": {
+        "type": "text",
+        "placeholder": "/path/to/output/directory",
+        "hint": "Directory to save generated audio files"
+      }
+    },
+    "AUDIO_FORMAT": {
+      "type": "string",
+      "required": false,
+      "input": {
+        "type": "select",
+        "options": [
+          "mp3",
+          "opus",
+          "aac",
+          "flac",
+          "wav",
+          "pcm"
+        ],
+        "default": "mp3",
+        "hint": "Audio format for the output file"
+      }
+    },
+    "AUDIO_SPEED": {
+      "type": "number",
+      "required": false,
+      "input": {
+        "type": "number",
+        "min": 0.25,
+        "max": 4.0,
+        "step": 0.25,
+        "default": 1.0,
+        "hint": "Speed of the generated audio (0.25 to 4.0)"
+      }
+    }
+  },
+  "entrypoint": {
+    "file": "handler.js",
+    "params": {
+      "text": {
+        "description": "The text to convert to audio",
+        "type": "string"
+      }
+    }
+  },
+  "examples": [
+    {
+      "prompt": "Convert this text to audio: Hello, world!",
+      "call": "{\"text\": \"Hello, world!\"}"
+    },
+    {
+      "prompt": "Create a fast audio file saying: The quick brown fox jumps over the lazy dog.",
+      "call": "{\"text\": \"The quick brown fox jumps over the lazy dog.\", \"AUDIO_SPEED\": 2.0}"
+    },
+    {
+      "prompt": "Generate slow speech for this sentence: AI is transforming the way we interact with technology.",
+      "call": "{\"text\": \"AI is transforming the way we interact with technology.\", \"AUDIO_SPEED\": 0.5}"
+    },
+    {
+      "prompt": "Make a wav audio file with this quote: To be or not to be, that is the question.",
+      "call": "{\"text\": \"To be or not to be, that is the question.\", \"AUDIO_FORMAT\": \"wav\"}"
+    },
+    {
+      "prompt": "Turn this into speech using the 'nova' voice: Welcome to the future of text-to-speech technology!",
+      "call": "{\"text\": \"Welcome to the future of text-to-speech technology!\", \"OPENAI_TTS_VOICE\": \"nova\"}"
+    }
+  ]
+}

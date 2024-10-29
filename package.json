@@ -1,0 +1,14 @@
+{
+  "name": "openai-text-to-audio",
+  "version": "1.0.0",
+  "description": "Convert text to audio using OpenAI's API",
+  "main": "handler.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Robert Sigler",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}

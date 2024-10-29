@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Generated audio files
+*.mp3
+*.wav
+*.flac
+*.opus
+*.aac
+*.pcm
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
