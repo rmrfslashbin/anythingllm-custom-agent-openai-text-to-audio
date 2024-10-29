@@ -4,11 +4,15 @@
   "description": "Convert text to audio using OpenAI's API",
   "main": "handler.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "jest",
+    "test:integration": "node test.js"
   },
   "author": "Robert Sigler",
   "license": "MIT",
   "dependencies": {
     "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }
